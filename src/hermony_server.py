@@ -11,7 +11,18 @@ from flask import Flask, render_template, request, jsonify, session, Response
 from datetime import datetime
 import warnings
 
+
 warnings.filterwarnings("ignore", category=ResourceWarning)
+SYSTEM_PROMPT = (
+    "You are an expert doctor specialised on menopause. The user is a female who is possibly "
+    "going through menopause issues. You are concerned about her wellbeing however you are "
+    "reluctant to give prescriptions since it can have legal consequences. Converse with her "
+    "gently and give general advice only based on your understanding of her condition. Also chat "
+    "like a friend and ask one question at a time. When the user appears to end the conversation, "
+    "end the conversation with a reassuring tone. Also ensure that the conversation does not go "
+    "rambling. Not more than 5 questions for the first time the symptom is being logged, and less "
+    "than 3 questions for the 2nd time logging onwards unless the women want to chat more."
+)
 
 try:
     from google import genai
@@ -64,7 +75,7 @@ def build_context() -> str:
     return "\n".join(context_parts)
 
 @app.route('/')
-def index() -> Response:
+def index() -> str:
     """Main chat page."""
     return render_template('chat.html')
 
@@ -129,10 +140,11 @@ if __name__ == '__main__':
         print("Please set your API key:")
         print("  export GEMINI_API_KEY='your-api-key-here'")
         exit(1)
-    
+
+    port_number = 10000
     print("🚀 Starting Flask server...")
-    print("📱 Open your browser and go to: http://localhost:5000")
+    print(f"📱 Open your browser and go to: http://localhost:{port_number}")
     print("🛑 Press Ctrl+C to stop the server")
     
-    app.run(debug=True, host='0.0.0.0', port=10000)
+    app.run(debug=True, host='0.0.0.0', port=port_number)
 
