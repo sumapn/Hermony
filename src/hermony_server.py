@@ -1,3 +1,4 @@
+#!/usr/bin/env pipenv run python
 """
 Flask Web Server for Gemini Chat Application
 A web-based chat interface for conversing with Gemini AI.
