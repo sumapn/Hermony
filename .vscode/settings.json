@@ -1,0 +1,13 @@
+{
+  "python.defaultInterpreterPath": "/Users/sumapn/.local/share/virtualenvs/my-new-pytApp-K0Dj-xms/bin/python",
+  // Tell mypy to run inside that interpreter
+  "mypy.enabled": true,
+  "mypy.runUsingActiveInterpreter": true,
+  "mypy.args": [
+    "--strict",
+    "--ignore-missing-imports"
+  ],
+  // Optional: use Pylance for extra type hints
+  "python.analysis.typeCheckingMode": "strict",
+  "python.languageServer": "None"
+}
