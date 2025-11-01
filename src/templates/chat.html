@@ -3,7 +3,7 @@
 <head>  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini Chat - Web Interface</title>
+    <title>Hermony Chat - Web Interface</title>
     <style>
         * {
             margin: 0;
@@ -194,20 +194,19 @@
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            <h1>🤖 Gemini Chat</h1>
-            <p>Chat with Google's Gemini AI</p>
+            <h1>Chat with Clara</h1>
         </div>
         
         <div class="chat-messages" id="chatMessages">
             <div class="message assistant">
                 <div class="message-content">
-                    Hello! I'm Gemini, your AI assistant. How can I help you today?
+                    Hello! I'm Clara, your AI assistant. How can I help you today?
                     <div class="message-time" id="welcomeTime"></div>
                 </div>
             </div>
         </div>
         
-        <div class="loading" id="loading">Gemini is thinking...</div>
+        <div class="loading" id="loading">Clara is thinking...</div>
         
         <div class="chat-input-container">
             <div class="controls">
@@ -333,7 +332,7 @@
                 if (data.history && data.history.length > 0) {
                     let historyText = 'Chat History:\n\n';
                     data.history.forEach((msg, index) => {
-                        const role = msg.role === 'user' ? 'You' : 'Gemini';
+                        const role = msg.role === 'user' ? 'You' : 'Clara';
                         const time = new Date(msg.timestamp).toLocaleString();
                         historyText += `${index + 1}. [${time}] ${role}: ${msg.content}\n`;
                     });

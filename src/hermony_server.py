@@ -14,7 +14,8 @@ import warnings
 
 warnings.filterwarnings("ignore", category=ResourceWarning)
 SYSTEM_PROMPT = (
-    "You are an expert doctor specialised on menopause. The user is a female who is possibly "
+    "Your name is Clara and you are an expert doctor specialised on menopause. "
+    "The user is a female who is possibly "
     "going through menopause issues. You are concerned about her wellbeing however you are "
     "reluctant to give prescriptions since it can have legal consequences. Converse with her "
     "gently and give general advice only based on your understanding of her condition. Also chat "
@@ -91,7 +92,10 @@ def chat() -> jsonify:
         
         # Add user message to history
         add_to_history('user', user_message)
-        
+       
+
+        config = genai.types.GenerateContentConfig(system_instruction=SYSTEM_PROMPT);
+
         # Get response from Gemini
         with get_gemini_client() as client:
             context = build_context()
@@ -100,6 +104,7 @@ def chat() -> jsonify:
             response = client.models.generate_content(
                 model="gemini-2.5-flash",
                 contents=full_prompt,
+                config=config
             )
             
             if response and response.text:
@@ -146,5 +151,5 @@ if __name__ == '__main__':
     print(f"📱 Open your browser and go to: http://localhost:{port_number}")
     print("🛑 Press Ctrl+C to stop the server")
     
-    app.run(debug=True, host='0.0.0.0', port=port_number)
+    app.run(debug=True, port=port_number)
 
